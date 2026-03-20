@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+# tmux-vim-promote — break nvim out of a popup into a real tmux pane or window
+#
+# Usage: tmux-vim-promote <mode> <cwd> [file]
+#   mode: "split" (side pane) or "window" (new tab)
+#
+# Requires TMUX_PARENT env var (set automatically by the tmux keybinding).
+
+mode="$1"
+cwd="$2"
+file="$3"
+target="${TMUX_PARENT}"
+
+if [[ -z "$target" ]]; then
+    echo "Not in a popup (TMUX_PARENT not set)" >&2
+    exit 1
+fi
+
+if [[ "$mode" == "split" ]]; then
+    cmd=(tmux split-window -t "$target" -h -l 40% -c "$cwd")
+else
+    cmd=(tmux new-window -t "$target" -a -c "$cwd")
+fi
+
+if [[ -n "$file" ]]; then
+    cmd+=(nvim -- "$file")
+else
+    cmd+=(nvim)
+fi
+
+"${cmd[@]}"

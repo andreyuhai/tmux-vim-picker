@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# tmux-vim-picker — fzf-pick a repo, open scratch nvim in a tmux popup
+#
+# Search paths are configurable via TMUX_VIM_PICKER_DIRS (colon-separated).
+# Defaults to ~/work if not set.
+#
+# Examples:
+#   export TMUX_VIM_PICKER_DIRS="$HOME/work"
+#   export TMUX_VIM_PICKER_DIRS="$HOME/work:$HOME/projects:$HOME/oss"
+
+IFS=':' read -ra dirs <<< "${TMUX_VIM_PICKER_DIRS:-$HOME/work}"
+
+selected=$(find "${dirs[@]}" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | \
+    sort | \
+    fzf --prompt="  vim in: " --height=100% --reverse)
+
+if [[ -z "$selected" ]]; then
+    exit 0
+fi
+
+cd "$selected" && exec nvim
