@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# tmux-vim-promote — break nvim out of a popup into a real tmux pane or window
+# tmux-vim-promote — break out of a popup into a real tmux pane or window
 #
 # Usage: tmux-vim-promote <mode> <cwd> [file]
 #   mode: "split" (side pane) or "window" (new tab)
@@ -24,9 +24,9 @@ else
 fi
 
 if [[ -n "$file" ]]; then
-    cmd+=(nvim -- "$file")
+    cmd+=(${EDITOR:-nvim} -- "$file")
 else
-    cmd+=(nvim)
+    cmd+=(${EDITOR:-nvim})
 fi
 
 "${cmd[@]}"
