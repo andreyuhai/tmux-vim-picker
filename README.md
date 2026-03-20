@@ -1,9 +1,3 @@
----
-created: 2026-03-20T12:50:00+0100
-last_edited: 2026-03-20T13:00:00+0100
-edit_reason: Rewrite for TPM plugin installation
----
-
 # tmux-vim-picker
 
 Open a throwaway nvim session in any repo from a tmux popup. Promote it to a real pane or window when you need it.
