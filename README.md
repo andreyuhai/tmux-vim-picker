@@ -14,7 +14,7 @@ And if you realize mid-read that you actually need that file open longer, you ca
 
 - tmux 3.3+ (for `display-popup -e`)
 - [TPM](https://github.com/tmux-plugins/tpm)
-- nvim
+- nvim (or any `$EDITOR` — see [Configuration](#configuration))
 - fzf
 - `~/.local/bin` in your `PATH`
 
@@ -60,6 +60,8 @@ end, { desc = "Promote to tmux split" })
 
 ## Configuration
 
+### Directories to scan
+
 Set `TMUX_VIM_PICKER_DIRS` to customize which directories are scanned (colon-separated):
 
 ```bash
@@ -68,3 +70,13 @@ export TMUX_VIM_PICKER_DIRS="$HOME/work:$HOME/projects"
 ```
 
 Defaults to `~/work` if not set.
+
+### Editor
+
+The picker launches `$EDITOR` (falling back to `nvim` if unset):
+
+```bash
+export EDITOR=nvim   # or vim, hx, emacs, ...
+```
+
+Note: the promote keymaps in `nvim-keymaps.lua` are nvim-specific. If you use a different editor, adapt the same pattern — call `tmux-vim-promote <split|window> <cwd> [file]` and then quit — using your editor's scripting API.
