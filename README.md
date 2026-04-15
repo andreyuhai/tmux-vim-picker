@@ -1,12 +1,12 @@
 # tmux-vim-picker
 
-Open a throwaway nvim session in any repo from a tmux popup. Promote it to a real pane or window when you need it.
+Open a throwaway editor session in any repo from a tmux popup. Promote it to a real pane or window when you need it.
 
 ## Why
 
 If you work across many repos with a tmux session per project, you've probably been there: you need to quickly check a file in another repo — maybe to verify an interface, check how something is implemented, or just fact-check yourself. So you switch sessions, open the file, close it, switch back. Or worse, you open a new split, forget about it, and end up with a graveyard of stale panes.
 
-This plugin gives you a fast, disposable way to peek at any repo without leaving your current session. A popup appears, you fuzzy-find a repo, nvim opens right there inside the popup. When you're done, `:q` and it's gone — no extra windows, no panes left behind, no session switching.
+This plugin gives you a fast, disposable way to peek at any repo without leaving your current session. A popup appears, you fuzzy-find a repo, your editor opens right there inside the popup. When you're done, `:q` and it's gone — no extra windows, no panes left behind, no session switching.
 
 And if you realize mid-read that you actually need that file open longer, you can promote it to a real tmux window or split pane without starting over.
 
@@ -53,7 +53,7 @@ end, { desc = "Promote to tmux split" })
 ## Usage
 
 1. **`prefix + v`** — popup with fzf listing all repos
-2. Pick a repo — nvim opens inside the popup
+2. Pick a repo — your editor opens inside the popup
 3. `:q` when done — popup disappears, no trace
 4. **`<leader>P`** — promote to a new tmux window (tab)
 5. **`<leader>p`** — promote to a split pane next to where you were
